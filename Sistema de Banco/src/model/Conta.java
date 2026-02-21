@@ -16,9 +16,28 @@ public class Conta {
     }
 
     public void depositar(double valor){
+
+        if (valor < 0){
+            throw new IllegalArgumentException("Digite um valor positivo");
+        }
+
         this.saldo += valor;
     }
-    public void sacar(){}
+
+    public void sacar(double valor){
+
+        if (valor < 0){
+            throw new IllegalArgumentException("Digite um valor positivo");
+        }
+
+
+        if (this.saldo < valor){
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
+
+        this.saldo -= valor;
+    }
+
     public void transferir(){}
 
     @Override

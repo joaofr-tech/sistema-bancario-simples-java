@@ -30,6 +30,7 @@ public class Main {
                 String nome = scanner.nextLine();
                 System.out.print("Saldo: ");
                 double saldo = scanner.nextDouble();
+                scanner.nextLine();
 
                 try{
                     bancoService.criarConta(nome, saldo);
@@ -63,6 +64,31 @@ public class Main {
 
                     try {
                         bancoService.depositar(escolhaDeposito, valorDeposito);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println();
+                        System.out.println("Erro: " + e.getMessage());
+                        System.out.println();
+                    }
+                }
+            }
+
+            if (opcao == 4){
+                if (bancoService.getContas().isEmpty()){
+                    System.out.println();
+                    System.out.println("Nenhuma conta cadastrada");
+                    System.out.println();
+                } else {
+                    bancoService.listarContas();
+
+                    System.out.print("Numero da conta: ");
+                    int escolhaDeposito = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Valor a sacar:");
+                    double valorSaque = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    try {
+                        bancoService.sacar(escolhaDeposito, valorSaque);
                     } catch (IllegalArgumentException e) {
                         System.out.println();
                         System.out.println("Erro: " + e.getMessage());

@@ -40,13 +40,17 @@ public class BancoService {
 
     public void depositar(int escolha, double valorDeposito){
 
-        if (valorDeposito < 0){
-            throw new IllegalArgumentException("Digite um valor positivo");
-        }
-
         for (Conta conta : contas){
             if (conta.getNumero() == escolha){
                 conta.depositar(valorDeposito);
+            }
+        }
+    }
+
+    public void sacar(int escolha, double valorSaque){
+        for (Conta conta : contas){
+            if (conta.getNumero() == escolha){
+                conta.sacar(valorSaque);
             }
         }
     }
