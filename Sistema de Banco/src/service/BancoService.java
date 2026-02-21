@@ -25,16 +25,33 @@ public class BancoService {
     }
 
     public void listarContas(){
+
+        if (contas.isEmpty()){
+            System.out.println();
+            System.out.println("Nenhuma conta cadastrada");
+            System.out.println();
+            return;
+        }
+
         for (Conta conta: contas){
             System.out.println(conta);
         }
     }
 
     public void depositar(int escolha, double valorDeposito){
+
+        if (valorDeposito < 0){
+            throw new IllegalArgumentException("Digite um valor positivo");
+        }
+
         for (Conta conta : contas){
             if (conta.getNumero() == escolha){
-                Conta.depositar(valorDeposito);
+                conta.depositar(valorDeposito);
             }
         }
+    }
+
+    public List<Conta> getContas() {
+        return contas;
     }
 }

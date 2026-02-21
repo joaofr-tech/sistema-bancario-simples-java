@@ -1,5 +1,7 @@
 package utils;
 
+import service.BancoService;
+
 public class PrintMenu {
     public static void printarMenu(){
         System.out.println("1 - Criar Conta");
@@ -10,4 +12,5 @@ public class PrintMenu {
         System.out.println("6 - Sair");
         System.out.print("Escolha: ");
     }
+
 }

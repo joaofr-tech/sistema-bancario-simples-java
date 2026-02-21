@@ -1,5 +1,6 @@
 import service.BancoService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Locale;
 
@@ -13,10 +14,18 @@ public class Main {
 
         while (true){
             printarMenu();
-            int escolha = scanner.nextInt();
-            scanner.nextLine();
+            String escolha = scanner.nextLine();
 
-            if (escolha == 1){
+            int opcao = 0;
+            try {
+                opcao = Integer.parseInt(escolha);
+            } catch (NumberFormatException e){
+                System.out.println();
+                System.out.println("Erro: Digite um numero");
+                System.out.println();
+            }
+
+            if (opcao == 1){
                 System.out.print("Nome: ");
                 String nome = scanner.nextLine();
                 System.out.print("Saldo: ");
@@ -27,26 +36,42 @@ public class Main {
                 } catch (IllegalArgumentException e){
                     System.out.println();
                     System.out.println("Erro: " + e.getMessage());
+                    System.out.println();
                 }
             }
 
-            if (escolha == 2){
+            if (opcao == 2){
                 bancoService.listarContas();
             }
 
-            if (escolha == 3){
-                bancoService.listarContas();
-                System.out.print("Numero da conta: ");
-                int escolhaDeposito = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Valor a depositar:");
-                int valorDeposito = scanner.nextInt();
-                scanner.nextLine();
+            if (opcao == 3){
 
-                bancoService.depositar(escolhaDeposito, valorDeposito);
+                if (bancoService.getContas().isEmpty()){
+                    System.out.println();
+                    System.out.println("Nenhuma conta cadastrada");
+                    System.out.println();
+                } else {
+
+                    bancoService.listarContas();
+
+                    System.out.print("Numero da conta: ");
+                    int escolhaDeposito = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Valor a depositar:");
+                    double valorDeposito = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    try {
+                        bancoService.depositar(escolhaDeposito, valorDeposito);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println();
+                        System.out.println("Erro: " + e.getMessage());
+                        System.out.println();
+                    }
+                }
             }
 
-            if (escolha == 6){
+            if (opcao == 6){
                 break;
             }
         }

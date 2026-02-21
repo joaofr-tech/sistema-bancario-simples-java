@@ -15,8 +15,8 @@ public class Conta {
         return numero;
     }
 
-    public void depositar(int escolha){
-
+    public void depositar(double valor){
+        this.saldo += valor;
     }
     public void sacar(){}
     public void transferir(){}
@@ -29,4 +29,6 @@ public class Conta {
                 ", saldo=" + saldo +
                 '}';
     }
+
+
 }
