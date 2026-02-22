@@ -40,6 +40,12 @@ public class BancoService {
 
     public void depositar(int escolha, double valorDeposito){
 
+        if (contas.isEmpty()){
+            System.out.println();
+            System.out.println("Nenhuma conta cadastrada");
+            System.out.println();
+        }
+
         for (Conta conta : contas){
             if (conta.getNumero() == escolha){
                 conta.depositar(valorDeposito);
@@ -48,6 +54,13 @@ public class BancoService {
     }
 
     public void sacar(int escolha, double valorSaque){
+
+        if (contas.isEmpty()){
+            System.out.println();
+            System.out.println("Nenhuma conta cadastrada");
+            System.out.println();
+        }
+
         for (Conta conta : contas){
             if (conta.getNumero() == escolha){
                 conta.sacar(valorSaque);

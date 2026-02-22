@@ -47,12 +47,6 @@ public class Main {
 
             if (opcao == 3){
 
-                if (bancoService.getContas().isEmpty()){
-                    System.out.println();
-                    System.out.println("Nenhuma conta cadastrada");
-                    System.out.println();
-                } else {
-
                     bancoService.listarContas();
 
                     System.out.print("Numero da conta: ");
@@ -69,15 +63,10 @@ public class Main {
                         System.out.println("Erro: " + e.getMessage());
                         System.out.println();
                     }
-                }
             }
 
             if (opcao == 4){
-                if (bancoService.getContas().isEmpty()){
-                    System.out.println();
-                    System.out.println("Nenhuma conta cadastrada");
-                    System.out.println();
-                } else {
+
                     bancoService.listarContas();
 
                     System.out.print("Numero da conta: ");
@@ -94,7 +83,6 @@ public class Main {
                         System.out.println("Erro: " + e.getMessage());
                         System.out.println();
                     }
-                }
             }
 
             if (opcao == 6){
